@@ -9,9 +9,9 @@
 /**
  * Enum for Midi Device Control Types.
  * @readonly
- * @enum {ControlType}
+ * @enum {ControlType} - BUTTON, ROTARY, SLIDER
  */
-const ControlTypes = Objects.freeze({
+const ControlTypes = Object.freeze({
   BUTTON: {
     RANGE: 2
   },
