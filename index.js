@@ -13,12 +13,15 @@
  */
 const ControlTypes = Object.freeze({
   BUTTON: {
+    NAME:'btn',
     RANGE: 2
   },
   ROTARY: {
+    NAME:'rty',
     RANGE: 127
   },
-  SLIDER: {
+  FADER: {
+    NAME:'fad',
     RANGE: 127
   }
 });
@@ -64,6 +67,10 @@ const MidiDeviceControl = class {
   }
   set midiMessageBindings(val) {
     this._midiMessageBindings = val;
+  }
+
+  static ControlTypes(){
+    return ControlTypes;
   }
 }
 
