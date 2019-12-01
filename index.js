@@ -6,39 +6,23 @@
  * @license MIT
  */
 
-/**
- * Enum for Midi Device Control Types.
- * @readonly
- * @enum {ControlType} - BUTTON, ROTARY, SLIDER
- */
-const ControlTypes = Object.freeze({
-  BUTTON: {
-    NAME:'btn',
-    RANGE: 2
-  },
-  ROTARY: {
-    NAME:'rty',
-    RANGE: 127
-  },
-  FADER: {
-    NAME:'fad',
-    RANGE: 127
-  }
-});
-
-/**
- * @class MidiDeviceControl
- * @property {number} id - MidiDeviceControl id
- * @property {string} name - MidiDeviceControl name, e.g. button-one
- * @property {ControlType} controlType - Button,Rotary,Slider
- * @property {array} midiMessageBindings
- */
 const MidiDeviceControl = class {
+
+  /**
+   * @property {number} id - MidiDeviceControl id
+   * @property {string} name - MidiDeviceControl name, e.g. button-one
+   * @property {ControlType} controlType - Button,Rotary,Slider
+   * @property {array} midiMessageBindings - MidiMessage data bindings
+   * @property {boolean} isInput - is this an input control
+   * @property {boolean} isOutput - is this an output control
+   */
   constructor(id, name, controlType, midiMessageBindings) {
     this._id = id;
     this._name = name;
     this._controlType = controlType;
     this._midiMessageBindings = midiMessageBindings;
+    this._isInput = false;
+    this._isOutput = false;
   }
 
   get id() {
@@ -69,8 +53,41 @@ const MidiDeviceControl = class {
     this._midiMessageBindings = val;
   }
 
-  static ControlTypes(){
-    return ControlTypes;
+  addMidiMessageBinding(val) {
+    this._midiMessageBindings.push(val);
+  }
+
+
+  get isInput() {
+    return this._isInput;
+  }
+  set isInput(val) {
+    this._isInput = val;
+  }
+
+  get isOutput() {
+    return this._isOutput;
+  }
+  set isOutput(val) {
+    this._isOutput = val;
+  }
+
+  /**
+   * Removes a specific MidiMessage binding from this MidiDeviceControl
+   * @param {array} binding - The binding to remove, in the form of [channel,note,value]
+   */
+  removeMidiMessageBinding(binding) {
+    for (var i = 0; i < this._midiMessageBindings.length; i++) {
+      if (this._midiMessageBindings[i][0] == binding[0] && this._midiMessageBindings[i][1] == binding[1] && this._midiMessageBindings[i][2] == binding[2]) {
+        this._midiMessageBindings.splice(i, 1);
+        return;
+      }
+    }
+  }
+
+  /** Remove all MidiMessage bindings from this MidiDeviceControl */
+  removeAllMidiMessageBindings() {
+    this._midiMessageBindings = null;
   }
 }
 
