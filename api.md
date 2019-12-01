@@ -3,13 +3,13 @@
 ## midi-device
 MidiDeviceControl class and utility module.
 
-**Version**: 0.1.0  
 **Author**: Jason Banfield <developer@dmxify.com>  
 **License**: MIT  
 
 * [midi-device](#module_midi-device)
     * [~MidiDeviceControl](#module_midi-device..MidiDeviceControl)
-    * [~ControlTypes](#module_midi-device..ControlTypes) : <code>enum</code>
+        * [.removeMidiMessageBinding(binding)](#module_midi-device..MidiDeviceControl+removeMidiMessageBinding)
+        * [.removeAllMidiMessageBindings()](#module_midi-device..MidiDeviceControl+removeAllMidiMessageBindings)
 
 <a name="module_midi-device..MidiDeviceControl"></a>
 
@@ -22,12 +22,29 @@ MidiDeviceControl class and utility module.
 | id | <code>number</code> | MidiDeviceControl id |
 | name | <code>string</code> | MidiDeviceControl name, e.g. button-one |
 | controlType | <code>ControlType</code> | Button,Rotary,Slider |
-| midiMessageBindings | <code>array</code> |  |
+| midiMessageBindings | <code>array</code> | MidiMessage data bindings |
+| isInput | <code>boolean</code> | is this an input control |
+| isOutput | <code>boolean</code> | is this an output control |
 
-<a name="module_midi-device..ControlTypes"></a>
 
-### midi-device~ControlTypes : <code>enum</code>
-Enum for Midi Device Control Types.
+* [~MidiDeviceControl](#module_midi-device..MidiDeviceControl)
+    * [.removeMidiMessageBinding(binding)](#module_midi-device..MidiDeviceControl+removeMidiMessageBinding)
+    * [.removeAllMidiMessageBindings()](#module_midi-device..MidiDeviceControl+removeAllMidiMessageBindings)
 
-**Kind**: inner enum of [<code>midi-device</code>](#module_midi-device)  
-**Read only**: true  
+<a name="module_midi-device..MidiDeviceControl+removeMidiMessageBinding"></a>
+
+#### midiDeviceControl.removeMidiMessageBinding(binding)
+Removes a specific MidiMessage binding from this MidiDeviceControl
+
+**Kind**: instance method of [<code>MidiDeviceControl</code>](#module_midi-device..MidiDeviceControl)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| binding | <code>array</code> | The binding to remove, in the form of [channel,note,value] |
+
+<a name="module_midi-device..MidiDeviceControl+removeAllMidiMessageBindings"></a>
+
+#### midiDeviceControl.removeAllMidiMessageBindings()
+Remove all MidiMessage bindings from this MidiDeviceControl
+
+**Kind**: instance method of [<code>MidiDeviceControl</code>](#module_midi-device..MidiDeviceControl)  
