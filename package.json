@@ -1,6 +1,6 @@
 {
   "name": "midi-device-control",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "MidiDeviceControl class and utility module.",
   "main": "index.js",
   "scripts": {
