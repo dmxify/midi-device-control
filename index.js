@@ -15,13 +15,19 @@ const MidiDeviceControl = class {
    * @property {boolean} isInput - is this an input control
    * @property {boolean} isOutput - is this an output control
    */
-  constructor(id, name, controlType, midiMessageBindings) {
+  constructor({
+    id = null,
+    name = 'unnamed',
+    controlType = null,
+    midiMessageBindings = []
+  }) {
     this._id = id;
     this._name = name;
     this._controlType = controlType;
     this._midiMessageBindings = midiMessageBindings;
     this._isInput = false;
     this._isOutput = false;
+    this.addMidiMessageBinding = this.addMidiMessageBinding.bind(this)
   }
 
   get id() {
