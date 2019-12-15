@@ -10,23 +10,25 @@ const MidiDeviceControl = class {
   /**
    * @property {number} id - MidiDeviceControl id
    * @property {string} name - MidiDeviceControl name, e.g. button-one
-   * @property {ControlType} controlType - Button,Rotary,Slider
+   * @property {enum} type - BUTTON,FADER
+   * @property {enum} subType - ON,ON_OFF,SPECIAL
+   * @property {enum} mode - TRIGGER,REPEAT
    * @property {array} midiMessageBindings - MidiMessage data bindings
-   * @property {boolean} isInput - is this an input control
-   * @property {boolean} isOutput - is this an output control
    */
   constructor({
     id = null,
     name = 'unnamed',
-    controlType = null,
+    type = null,
+    subType = null,
+    mode = null,
     midiMessageBindings = []
   }) {
     this._id = id;
     this._name = name;
-    this._controlType = controlType;
+    this._type = type;
+    this._subType = subType;
+    this._mode = mode;
     this._midiMessageBindings = midiMessageBindings;
-    this._isInput = false;
-    this._isOutput = false;
     this.addMidiMessageBinding = this.addMidiMessageBinding.bind(this)
   }
 
@@ -44,11 +46,23 @@ const MidiDeviceControl = class {
     this._name = val;
   }
 
-  get controlType() {
-    return this._controlType;
+  get type() {
+    return this._type;
   }
-  set controlType(val) {
-    this._controlType = val;
+  set type(val) {
+    this._type = val;
+  }
+  get subType() {
+    return this._subType;
+  }
+  set subType(val) {
+    this._subType = val;
+  }
+  get mode() {
+    return this._mode;
+  }
+  set mode(val) {
+    this._mode = val;
   }
 
   get midiMessageBindings() {
@@ -60,21 +74,6 @@ const MidiDeviceControl = class {
 
   addMidiMessageBinding(val) {
     this._midiMessageBindings.push(val);
-  }
-
-
-  get isInput() {
-    return this._isInput;
-  }
-  set isInput(val) {
-    this._isInput = val;
-  }
-
-  get isOutput() {
-    return this._isOutput;
-  }
-  set isOutput(val) {
-    this._isOutput = val;
   }
 
   /**
